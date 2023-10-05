@@ -3,9 +3,8 @@ import initAnimaNumeros from "./animaNumeros.js";
 export default function initFetchAnimais() {
   async function fetchAnimais() {
     try{
-      const animaisResponse = await fetch('http://127.0.0.1:5500/jsAssincrono/animais-fetch/js/api/animais.json');
+      const animaisResponse = await fetch('http://127.0.0.1:5500/js/api/animais.json');
       const animaisJSON = await animaisResponse.json();
-      console.log(animaisJSON)
       const numerosGrid = document.querySelector('.numeros-grid');
 
       animaisJSON.forEach(animal => {
