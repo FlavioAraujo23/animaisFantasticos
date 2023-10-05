@@ -25,5 +25,7 @@ module.exports = {
     'no-param-reassign': 0,
     'import/extensions': 0,
     'no-console': 0,
+    'no-named-as-default-member': 0,
+    'no-named-as-default': 0,
   },
 };
