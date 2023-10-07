@@ -228,17 +228,17 @@ font-weight: bold;
   }
 }
 
-.js [data-anime="acoordion"] dd {
+.js [data-anime="accordion"] dd {
   display: none;
 }
-[data-anime="acoordion"] dt::after{
+[data-anime="accordion"] dt::after{
   content: "⤵";
   margin-left: 10px;
 }
-[data-anime="acoordion"] dt.ativo::after{
+[data-anime="accordion"] dt.ativo::after{
   content: "⤴";
 }
-[data-anime="acoordion"] dd.ativo{
+[data-anime="accordion"] dd.ativo{
   display: block;
   animation: slideDown .5s forwards;
 }
