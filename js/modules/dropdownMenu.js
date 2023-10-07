@@ -1,36 +1,46 @@
-export default function initDropdownMenu() {
-  const dropdownMenus = document.querySelectorAll('[data-dropdown]');
-  dropdownMenus.forEach(menu => {
-    ['touchstart', 'click'].forEach(userEvent => {
-      menu.addEventListener(userEvent, handleClick);
-    });
-  });
+import outsideClick from './outside.js';
 
-  function handleClick(event) {
+export default class DropdownMenu {
+  constructor(dropdownMenus, events) {
+    this.dropdownMenus = document.querySelectorAll(dropdownMenus);
+
+    // define touchstart e click argumentos
+    // padrão de events caso o usuário não defina
+    if (events === undefined) {
+      this.events = ['touchstart', 'click'];
+    } else {
+      this.events = events;
+    }
+
+    this.activeClass = 'active';
+
+    this.activeDropDownMenu = this.activeDropDownMenu.bind(this);
+  }
+
+  // ativa o dropDownMenu e adiciona
+  // a função que observa o clique fora dele
+  activeDropDownMenu(event) {
     event.preventDefault();
-    this.classList.add('active');
-    outsideClick(this, ['touchstart', 'click'], () => {
-      this.classList.remove('active');
+    const element = event.currentTarget;
+    element.classList.add(this.activeClass);
+    outsideClick(element, this.events, () => {
+      element.classList.remove('active');
     });
-  };
-  function outsideClick(element, events, callback) {
-    const html = document.documentElement;
-    const outside = 'data-outside';
-  
-    if(!element.hasAttribute(outside)) {
-      events.forEach(userEvent => {
-        html.addEventListener(userEvent, handleOutsideClick);
-      })
-      element.setAttribute(outside, '');
+  }
+
+  // Adiciona os eventos ao dropDownMenu
+  addDropDownMenuEvent() {
+    this.dropdownMenus.forEach((menu) => {
+      this.events.forEach((userEvent) => {
+        menu.addEventListener(userEvent, this.activeDropDownMenu);
+      });
+    });
+  }
+
+  init() {
+    if (this.dropdownMenus.length) {
+      this.addDropDownMenuEvent();
     }
-    function handleOutsideClick(event) {
-      if(!element.contains(event.target)) {
-        element.removeAttribute(outside);
-        events.forEach(userEvent => {
-          html.removeEventListener(userEvent, handleOutsideClick);
-        })
-        callback();
-      }
-    }
+    return this;
   }
 }
