@@ -10,7 +10,7 @@ export default function fetchAnimais() {
 
   async function criarAnimais() {
     try {
-      const animaisResponse = await fetch('http://127.0.0.1:5500/js/api/animais.json');
+      const animaisResponse = await fetch('https://animais-fantasticos-blush.vercel.app/js/api/animais.json');
       const animaisJSON = await animaisResponse.json();
       const numerosGrid = document.querySelector('.numeros-grid');
 
