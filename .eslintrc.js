@@ -27,5 +27,6 @@ module.exports = {
     'no-console': 0,
     'no-named-as-default-member': 0,
     'no-named-as-default': 0,
+    'max-classes-per-file': 0,
   },
 };
