@@ -1,9 +1,9 @@
 .galeria {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
 }
 .wrapper{
   overflow: hidden;
-  grid-column: 2 / -1;
+  grid-column: 1 / -1;
 }
 
 .slide{
@@ -55,4 +55,11 @@ slide:hover{
 .custom-controls li.active {
   opacity: 1;
   transform: scale(1);
+}
+
+@media (max-width: 700px) {
+  .custom-controls li {
+    width: 15px;
+    height: 15px;
+  }
 }
